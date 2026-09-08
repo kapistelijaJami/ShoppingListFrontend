@@ -4,6 +4,8 @@ A small frontend shopping list web app (PWA) that keeps multiple lists in sync a
 
 > The app is a static frontend. It connects to a WebSocket server at `/wss/kauppalista` on the same host that serves it, so you'll need a matching backend running to use it.
 
+Here is the backend: [ShoppingListBackend](https://github.com/kapistelijaJami/ShoppingListBackend).
+
 ## Features
 
 - Create, rename, refresh and delete multiple lists
