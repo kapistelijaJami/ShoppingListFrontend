@@ -11,6 +11,9 @@ A small frontend shopping list web app (PWA) that keeps multiple lists in sync a
 - Copy items from one list to another
 - Installable as a Progressive Web App (see `site.webmanifest`)
 
+## Preview
+![Preview](https://github.com/kapistelijaJami/ShoppingListFrontend/blob/863ae6e3579dabd64f46bb24dca5a1e9a88f91a3/img/Preview.png "Preview")
+
 ## Tech
 
 - Plain HTML / CSS / JavaScript (no build step)
