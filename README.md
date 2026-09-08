@@ -1,4 +1,4 @@
-# Shopping List (Kauppalista)
+# Shopping List
 
 A small frontend shopping list web app (PWA) that keeps multiple lists in sync across connected clients in real time.
 
