@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Shopping List</h1>
+        <div class="status disconnected" id="status">Connecting...</div>
+
+        <div class="list-toolbar" id="list-toolbar">
+            <select id="listSelect"></select>
+            <button type="button" id="copyModeBtn">Copy items</button>
+            <div class="menu-container">
+                <button type="button" id="listMenuBtn" class="icon-btn" aria-label="List options">⋮</button>
+                
+                <div id="listMenu" class="floating-menu hidden">
+                    <button type="button" id="createListBtn">Create new list</button>
+                    <button type="button" id="renameListBtn">Rename list</button>
+                    <button type="button" id="copyListItemsBtn">Copy list items to clipboard</button>
+                    <button type="button" id="deleteListBtn" class="btn-danger">Delete list</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copy mode toolbar (hidden in normal mode) -->
+        <div class="copy-toolbar hidden" id="copyToolbar">
+            <select id="sourceListSelect"></select>
+            <select id="targetListSelect"></select>
+            <button type="button" id="doneCopyBtn">Done</button>
+        </div>
+
+        <!-- Normal single-column view -->
+        <div id="normalView">
+            <div class="input-group">
+                <form autocomplete="off">
+                    <input 
+                        type="text" 
+                        id="itemInput" 
+                        placeholder="Add an item..." 
+                        autocomplete="off"
+                        disabled
+                    >
+                    <button id="addBtn" type="submit" disabled>Add</button>
+                </form>
+            </div>
+
+            <ul class="shopping-list" id="shoppingList"></ul>
+            
+            <div class="empty-message" id="emptyMessage" style="display: none;">
+                No items yet. Add one to get started!
+            </div>
+
+            <div class="items-total-text hidden">
+                Items in list: <span id="itemsTotal">0</span>
+            </div>
+
+            <button class="clear-btn" id="clearBtn" disabled>
+                Clear All
+            </button>
+        </div>
+
+        <!-- Split view (copy mode) -->
+        <div class="split-view hidden" id="splitView">
+            <div class="split-panel">
+                <div class="split-header">Source</div>
+                <ul class="copy-list" id="sourceList"></ul>
+                <div class="empty-message" id="sourceEmptyMessage" style="display: none;">
+                    No items to copy.
+                </div>
+            </div>
+            <div class="split-panel">
+                <div class="split-header">Target</div>
+                <ul class="copy-list" id="targetList"></ul>
+                <div class="empty-message" id="targetEmptyMessage" style="display: none;">
+                    No items yet.
+                </div>
+            </div>
+        </div>
+
+        <div class="client-count">
+            Connected clients: <span id="clientCount">0</span>
+        </div>
+    </div>
+</body>
+</html>

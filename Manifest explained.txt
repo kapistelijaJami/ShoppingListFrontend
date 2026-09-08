@@ -1,0 +1,3 @@
+The site.webmanifest is used to install Progressive Web Apps (PWA) to Android etc. So it looks like an actual App, not just a website opened with chrome. It's still a website behind the scenes, but it looks like a standalone app. That's what "display": "standalone" is for. It also defines the icons. There's also "start_url": "./", which tells the url path where the page enters. It is now relative, gets this folder, it could've been /kauppalista/, since that's the url path. And "scope": "./", same thing, but it defines what websites are out of the scope of the app, so it will open them probably with chrome or something.
+
+Found the logo from here: https://icon-sets.iconify.design/noto/shopping-cart/ It has bunch of options.

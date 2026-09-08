@@ -1,0 +1,479 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+}
+
+.container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.status {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.status.connected {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.disconnected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.list-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  align-items: stretch;
+}
+
+.list-toolbar select {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 2px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.list-toolbar input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#newListName {
+  flex: 0 1 160px;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+form {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  height: 40px;
+  align-items: stretch;
+}
+
+input[type="text"] {
+  min-width: 0;
+  flex: 1 1 auto;
+  padding: 10px 12px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+button {
+  padding: 10px 14px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #032fc3;
+}
+
+button:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
+}
+
+.clear-btn {
+  width: 100%;
+  background-color: #dc3545;
+  margin-top: 8px;
+}
+
+.clear-btn:hover {
+  background-color: #c82333;
+}
+
+.shopping-list {
+  list-style: none;
+}
+
+.shopping-list li {
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s;
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.item-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #333;
+  font-size: 16px;
+  word-break: break-word;
+  margin-left: 5px;
+}
+
+.shopping-list li:has(input[type="checkbox"]:checked) .item-name {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.item-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.item-count span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+}
+
+.count-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background-color: #e2e8f0;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  text-align: center;
+}
+
+.count-btn:hover {
+  background-color: #cbd5e1;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 34px;
+  height: 34px;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.client-count {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.items-total-text {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+/* Container stays tiny and does not grow when menu opens */
+.menu-container {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+#listMenuBtn {
+  width: 55px;
+  height: 100%;
+}
+
+/* Floating overlay menu */
+.floating-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  min-width: 110px;
+  z-index: 1000;
+}
+
+.floating-menu button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  margin: 3px;
+  white-space: nowrap;
+}
+
+#deleteListBtn {
+  background-color: #dc3545;
+}
+
+#deleteListBtn:hover {
+  background-color: #c82333;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#addBtn {
+  width: 55px;
+  flex-shrink: 0;
+}
+
+#copyModeBtn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Copy mode toolbar */
+.copy-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  align-items: stretch;
+}
+
+.copy-toolbar select {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 2px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+#doneCopyBtn {
+  flex-shrink: 0;
+  background-color: #28a745;
+}
+
+#doneCopyBtn:hover {
+  background-color: #218838;
+}
+
+/* Split view (copy mode) */
+.split-view {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.split-panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.split-header {
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 6px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+.copy-list {
+  list-style: none;
+}
+
+.copy-list li {
+  padding: 7px;
+  height: 48px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+  word-break: break-word;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sourceList li:active {
+  transform: scale(0.98);
+}
+
+.copy-list li.hidden-item {
+  display: none;
+}
+
+#sourceList li {
+  cursor: pointer;
+  justify-content: center;
+}
+
+/* Source items get a subtle green tint on hover to hint "copy" */
+#sourceList li:hover {
+  background-color: #d4edda;
+}
+
+#targetList li .target-text {
+  flex-grow: 1;
+}
+
+@media (max-width: 440px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .input-group {
+    gap: 6px;
+  }
+
+  input[type="text"] {
+    font-size: 14px;
+    padding: 9px 10px;
+  }
+
+  button {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .shopping-list li {
+    padding: 9px;
+  }
+
+  .item-name {
+    font-size: 14px;
+  }
+
+  .count-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .item-count span {
+    min-width: 16px;
+  }
+
+  .delete-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .client-count {
+    font-size: 13px;
+  }
+
+  .items-total {
+    font-size: 13px;
+  }
+
+  #newListName {
+    flex: 0 1 120px;
+  }
+}
