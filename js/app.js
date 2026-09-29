@@ -18,6 +18,12 @@ let copyModeActive = false;
 let sourceListId = null;
 let sourceItems = [];
 
+//Client-side only marker: id of the last item THIS client ticked/unticked in normal view.
+let lastToggledItemId = null;
+//Timeout id for auto-removing the marker; the timer restarts with every new toggle.
+const LAST_TOGGLE_MARK_MS = 60000;
+let lastToggleTimer = null;
+
 const reconnectTimeoutMs = 1000;
 let reconnectInstantly = true;
 let reconnectTimeout = null;
@@ -161,7 +167,23 @@ function addItem() {
 }
 
 function toggleItem(id, newState) {
+    lastToggledItemId = id; //Remember this client's last ticked/unticked item for the marker
+
+    //Restart the auto-remove timer so the marker fades out a minute after the latest toggle.
+    if (lastToggleTimer) {
+        clearTimeout(lastToggleTimer);
+    }
+    lastToggleTimer = setTimeout(clearLastToggleMarker, LAST_TOGGLE_MARK_MS);
+
     sendMessage({ type: 'toggle', id: id, newState: newState, listId: currentListId.value });
+}
+
+function clearLastToggleMarker() {
+    lastToggleTimer = null;
+    if (lastToggledItemId !== null) {
+        lastToggledItemId = null;
+        renderList();
+    }
 }
 
 function changeCount(id, delta) {
@@ -576,6 +598,11 @@ function renderList() {
         li.setAttribute('data-id', item.id);
         li.className = 'item';
 
+        //Highlight the last item this client ticked/unticked
+        if (item.id === lastToggledItemId) {
+            li.classList.add('last-toggled');
+        }
+
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = item.completed;
@@ -679,6 +706,12 @@ function toggleMenu(event) {
 }
 
 function currentListIdChanged() {
+    //Marker is per-list; reset it (and its timer) whenever the current list changes
+    if (lastToggleTimer) {
+        clearTimeout(lastToggleTimer);
+        lastToggleTimer = null;
+    }
+    lastToggledItemId = null;
     disableButtons();
 }
 

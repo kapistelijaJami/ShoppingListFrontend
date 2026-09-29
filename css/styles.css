@@ -182,6 +182,12 @@ input[type="checkbox"] {
   color: #999;
 }
 
+/* Client-side marker: highlights the last item this client ticked/unticked (normal view) */
+.shopping-list li.last-toggled {
+  background-color: #eef1fd;
+  box-shadow: inset 4px 0 0 #667eea;
+}
+
 .item-count {
   display: flex;
   align-items: center;
